@@ -13,6 +13,8 @@ developing an app with TDD, is a simple API REST with a DB connection.
 - Run app with the default intellij configuration or with the following command:
   > mvn spring-boot:run
 
+**Disclamer:** You must have docker installed and mvn 
+
 ## Next steps
 - Hexagonal architecture
 - Multiple adapters for different DB, APIs and Kafka
