@@ -1,14 +1,15 @@
 package com.edamm.archetype_api_testcontainers;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table (
+    name = "employee",
+    uniqueConstraints = @UniqueConstraint(name = "uk_employee_email", columnNames = "email")
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

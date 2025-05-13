@@ -1,5 +1,7 @@
 package com.edamm.archetype_api_testcontainers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee create(@RequestBody Employee employee) {
-        return repository.save(employee);
+    public ResponseEntity<Employee> create(@RequestBody Employee employee) {
+        return new ResponseEntity<>(repository.save(employee), HttpStatus.CREATED);
     }
 }
