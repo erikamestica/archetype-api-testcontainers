@@ -1,21 +1,41 @@
-package com.edamm.archetype_api_testcontainers;
+package com.edamm.archetype_api_testcontainers.employees;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.edamm.archetype_api_testcontainers.Employee;
+import com.edamm.archetype_api_testcontainers.config.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
+import org.springframework.test.context.jdbc.Sql;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ArchetypeApiTestcontainersApplicationTests {
+class EmployeesIntegrationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
+
+	@Test
+	@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "/sql/employees/setup.sql")
+	public void testFindAllEmployees(){
+		// Llamar al endpoint GET /employees
+		ResponseEntity<Employee[]> response = restTemplate.getForEntity("/employees", Employee[].class);
+
+		assertTrue(response.getStatusCode().is2xxSuccessful());
+		List<Employee> employees = Arrays.asList(response.getBody());
+
+		assertFalse(employees.isEmpty());
+		assertEquals(1, employees.size());
+		assertEquals("Alice", employees.get(0).getName());
+		assertEquals("alice@example.com", employees.get(0).getEmail());
+	}
 
 	@Test
 	public void testCreateEmployee() {
