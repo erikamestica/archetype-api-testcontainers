@@ -11,7 +11,7 @@
 	<groupId>com.edamm</groupId>
 	<artifactId>archetype-api-testcontainers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>archetype-api-testcontainers</name>
 	<description>SpringBoot archetype with an API with JPA and TestContainers</description>
 	<url/>

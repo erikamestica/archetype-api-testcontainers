@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: archetype-api-testcontainers
+  datasource:
+    url: jdbc:postgresql://postgres:5432/ed-db-archetype-testcontainers
+    driver-class-name: org.postgresql.Driver
+    username: app-user
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
