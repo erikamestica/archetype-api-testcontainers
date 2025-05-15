@@ -15,5 +15,9 @@ developing an app with TDD, is a simple API REST with a DB connection.
 
 ## Next steps
 - Hexagonal architecture
-- Multiple adapters for different DB, APIs and Kafka
+  > fix controllers scanning
+- Choose license (free to edit, and use, no responsibility)
+- Unit tests
 - API First
+- poms cleanup
+- Multiple adapters for different DB, APIs and Kafka

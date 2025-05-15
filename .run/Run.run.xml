@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run" type="Application" factoryName="Application">
     <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-    <option name="MAIN_CLASS_NAME" value="com.edamm.archetype_api_testcontainers.ArchetypeApiTestcontainersApplication" />
-    <module name="archetype-api-testcontainers" />
+    <option name="MAIN_CLASS_NAME" value="com.edamm.archetype.ArchetypeApiTestcontainersApplication" />
+    <module name="archetype-api-test-containers-boot" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.edamm.archetype_api_testcontainers.config.*" />
+        <option name="PATTERN" value="com.edamm.archetype.config.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
