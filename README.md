@@ -14,8 +14,6 @@ developing an app with TDD, is a simple API REST with a DB connection.
   > mvn spring-boot:run
 
 ## Next steps
-- Hexagonal architecture
-  > fix controllers scanning
 - Choose license (free to edit, and use, no responsibility)
 - Unit tests
 - API First

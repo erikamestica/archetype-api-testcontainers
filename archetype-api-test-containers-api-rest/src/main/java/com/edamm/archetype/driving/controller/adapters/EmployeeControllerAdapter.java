@@ -7,10 +7,14 @@ import com.edamm.archetype.driving.controller.mappers.EmployeeDtoMapper;
 import com.edamm.archetype.driving.controller.ports.EmployeeControllerPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 @RequiredArgsConstructor
 public class EmployeeControllerAdapter implements EmployeeControllerPort {
 
@@ -35,13 +39,17 @@ public class EmployeeControllerAdapter implements EmployeeControllerPort {
     @Override
     public ResponseEntity<EmployeeDto> create(EmployeeDto employee) {
         Employee savedEmployee = employeePort.save(mapper.dtoToDomain(employee));
-        return ResponseEntity.ok(mapper.domainToDto(savedEmployee));
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}").buildAndExpand(savedEmployee.getId()).toUri();
+
+        return ResponseEntity.created(location).body(mapper.domainToDto(savedEmployee));
     }
 
     @Override
     public ResponseEntity<Void> delete(Integer employeeId) {
         employeePort.deleteById(employeeId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
 }

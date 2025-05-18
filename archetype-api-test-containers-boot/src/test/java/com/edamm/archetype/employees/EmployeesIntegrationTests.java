@@ -17,16 +17,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(
+	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD,
+	scripts = { "/sql/employees/cleanup.sql", "/sql/employees/setup.sql" }
+)
 class EmployeesIntegrationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@Test
-	@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "/sql/employees/setup.sql")
 	public void testFindAllEmployees(){
+
 		// Llamar al endpoint GET /employees
-		ResponseEntity<EmployeeDto[]> response = restTemplate.getForEntity("/employees", EmployeeDto[].class);
+		ResponseEntity<EmployeeDto[]> response = restTemplate
+				.getForEntity("/employees", EmployeeDto[].class);
 
 		assertTrue(response.getStatusCode().is2xxSuccessful());
 		assertNotNull(response);
@@ -41,7 +46,23 @@ class EmployeesIntegrationTests {
 	}
 
 	@Test
+	public void testFindOneEmployees(){
+
+		// Llamar al endpoint GET /employees
+		ResponseEntity<EmployeeDto> response = restTemplate
+				.getForEntity("/employees/1", EmployeeDto.class);
+
+		assertTrue(response.getStatusCode().is2xxSuccessful());
+		assertNotNull(response);
+		assertNotNull(response.getBody());
+
+		assertEquals("Alice", response.getBody().getName());
+		assertEquals("alice@example.com", response.getBody().getEmail());
+	}
+
+	@Test
 	public void testCreateEmployee() {
+
 		// Datos del empleado que vamos a crear
 		String requestJson = """
             {
@@ -51,16 +72,30 @@ class EmployeesIntegrationTests {
         """;
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON); // Establecemos el Content-Type a application/json
+
+		// Establecemos el Content-Type a application/json
+		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);
 
 		// Realizamos la solicitud con el encabezado correcto
-		ResponseEntity<String> response = restTemplate.exchange("/employees", HttpMethod.POST, entity, String.class);
+		ResponseEntity<String> response = restTemplate
+				.exchange("/employees", HttpMethod.POST, entity, String.class);
 
 		// Verificamos que la respuesta tenga el estado 201 (CREATED)
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 
-		// También puedes hacer una comprobación más detallada si lo deseas, como verificar el contenido de la respuesta.
+	}
+
+	@Test
+	void testDeleteEmployee() {
+		ResponseEntity<Void> response = restTemplate.exchange(
+				"/employees/" + 1,
+				HttpMethod.DELETE,
+				null,
+				Void.class
+		);
+
+		assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
 	}
 
 }
