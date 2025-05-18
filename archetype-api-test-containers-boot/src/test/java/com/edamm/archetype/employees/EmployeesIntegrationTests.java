@@ -46,11 +46,11 @@ class EmployeesIntegrationTests {
 	}
 
 	@Test
-	public void testFindOneEmployees(){
+	public void testFindOneEmployee(){
 
 		// Llamar al endpoint GET /employees
 		ResponseEntity<EmployeeDto> response = restTemplate
-				.getForEntity("/employees/1", EmployeeDto.class);
+				.getForEntity("/employees/2", EmployeeDto.class);
 
 		assertTrue(response.getStatusCode().is2xxSuccessful());
 		assertNotNull(response);
@@ -89,7 +89,7 @@ class EmployeesIntegrationTests {
 	@Test
 	void testDeleteEmployee() {
 		ResponseEntity<Void> response = restTemplate.exchange(
-				"/employees/" + 1,
+				"/employees/" + 2,
 				HttpMethod.DELETE,
 				null,
 				Void.class

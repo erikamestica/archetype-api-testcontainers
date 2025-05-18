@@ -1,1 +1,1 @@
-INSERT INTO employee (name, email) VALUES ('Alice', 'alice@example.com');
+INSERT INTO employee (id, name, email) VALUES (2, 'Alice', 'alice@example.com');
