@@ -14,14 +14,21 @@
 	<packaging>pom</packaging>
 	<name>archetype-api-testcontainers</name>
 	<description>SpringBoot archetype with an API with JPA and TestContainers</description>
-	<properties>
-		<mapstruct.version>1.6.3</mapstruct.version>
-	</properties>
 	<licenses>
-		<license/>
+		<license>
+			<name>The MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<id>erikamestica</id>
+			<name>Erik Amestica</name>
+			<email>erikamesticalarrinaga@gmail.com</email>
+			<url>https://github.com/erikamestica</url>
+			<timezone>CET</timezone>
+		</developer>
 	</developers>
 	<modules>
 		<module>archetype-api-test-containers-domain</module>
@@ -30,26 +37,6 @@
 		<module>archetype-api-test-containers-boot</module>
 	</modules>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-database-postgresql</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -61,16 +48,6 @@
 			<artifactId>spring-boot-docker-compose</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -85,7 +62,7 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${mapstruct.version}</version>
+			<version>1.6.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
