@@ -1,6 +1,6 @@
 package com.edamm.archetype.employees;
 
-import com.edamm.archetype.driving.controller.dtos.EmployeeDto;
+import com.edamm.archetype.api.EmployeeDto;
 import com.edamm.archetype.config.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

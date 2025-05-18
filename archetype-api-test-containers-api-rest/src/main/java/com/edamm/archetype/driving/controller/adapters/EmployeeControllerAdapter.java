@@ -1,10 +1,10 @@
 package com.edamm.archetype.driving.controller.adapters;
 
+import com.edamm.archetype.EmployeesApi;
+import com.edamm.archetype.api.EmployeeDto;
 import com.edamm.archetype.domain.models.Employee;
 import com.edamm.archetype.domain.ports.driving.EmployeePort;
-import com.edamm.archetype.driving.controller.dtos.EmployeeDto;
 import com.edamm.archetype.driving.controller.mappers.EmployeeDtoMapper;
-import com.edamm.archetype.driving.controller.ports.EmployeeControllerPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +16,13 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-public class EmployeeControllerAdapter implements EmployeeControllerPort {
+public class EmployeeControllerAdapter implements EmployeesApi {
 
     private final EmployeePort employeePort;
     private final EmployeeDtoMapper mapper;
 
     @Override
-    public ResponseEntity<List<EmployeeDto>> findAll() {
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
         List<EmployeeDto> employees = employeePort.findAll().stream()
                 .map(mapper::domainToDto)
                 .toList();
@@ -30,25 +30,25 @@ public class EmployeeControllerAdapter implements EmployeeControllerPort {
     }
 
     @Override
-    public ResponseEntity<EmployeeDto> findOne(Integer employeeId) {
-        Optional<EmployeeDto> employee = employeePort.findOne(employeeId)
+    public ResponseEntity<EmployeeDto> getEmployeeById(Integer id) {
+        Optional<EmployeeDto> employee = employeePort.findOne(id)
                 .map(mapper::domainToDto);
         return ResponseEntity.of(employee);
     }
 
     @Override
-    public ResponseEntity<EmployeeDto> create(EmployeeDto employee) {
-        Employee savedEmployee = employeePort.save(mapper.dtoToDomain(employee));
+    public ResponseEntity<EmployeeDto> createEmployee(EmployeeDto employeeDto) {
+        Employee savedEmployee = employeePort.save(mapper.dtoToDomain(employeeDto));
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{id}").buildAndExpand(savedEmployee.getId()).toUri();
+                .path("/{id}").buildAndExpand(savedEmployee.getId()).toUri();
 
         return ResponseEntity.created(location).body(mapper.domainToDto(savedEmployee));
     }
 
     @Override
-    public ResponseEntity<Void> delete(Integer employeeId) {
-        employeePort.deleteById(employeeId);
+    public ResponseEntity<Void> deleteEmployee(Integer id) {
+        employeePort.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

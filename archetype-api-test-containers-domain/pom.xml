@@ -9,10 +9,4 @@
     <artifactId>archetype-api-test-containers-domain</artifactId>
     <name>Archetype - archetype-api-test-containers-application</name>
     <url>http://maven.apache.org</url>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-    </dependencies>
 </project>

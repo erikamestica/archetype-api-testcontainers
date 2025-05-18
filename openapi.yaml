@@ -1,0 +1,99 @@
+openapi: 3.0.1
+info:
+  title: Employee API
+  version: 0.0.1
+  description: API for managing employees
+
+paths:
+  /employees:
+    get:
+      summary: Get all employees
+      operationId: getAllEmployees
+      responses:
+        '200':
+          description: List of employees
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeDto'
+        '501':
+          description: Not implemented (only under development)
+
+    post:
+      summary: Create a new employee
+      operationId: createEmployee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+      responses:
+        '201':
+          description: Employee created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDto'
+        '400':
+          description: One or more required fields not found
+        '501':
+          description: Not implemented (only under development)
+
+  /employees/{id}:
+    get:
+      summary: Get an employee by ID
+      operationId: getEmployeeById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Employee ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Employee found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDto'
+        '404':
+          description: Employee not found
+        '501':
+          description: Not implemented (only under development)
+
+    delete:
+      summary: Delete an employee by ID
+      operationId: deleteEmployee
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Employee ID
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Employee deleted
+        '404':
+          description: Employee not found
+        '501':
+          description: Not implemented (only under development)
+
+components:
+  schemas:
+    EmployeeDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: jdoe@example.es
