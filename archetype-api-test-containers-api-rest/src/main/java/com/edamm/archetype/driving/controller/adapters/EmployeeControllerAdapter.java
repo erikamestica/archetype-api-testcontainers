@@ -39,11 +39,7 @@ public class EmployeeControllerAdapter implements EmployeesApi {
     @Override
     public ResponseEntity<EmployeeDto> createEmployee(EmployeeDto employeeDto) {
         Employee savedEmployee = employeePort.save(mapper.dtoToDomain(employeeDto));
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(savedEmployee.getId()).toUri();
-
-        return ResponseEntity.created(location).body(mapper.domainToDto(savedEmployee));
+        return ResponseEntity.ok(mapper.domainToDto(savedEmployee));
     }
 
     @Override
