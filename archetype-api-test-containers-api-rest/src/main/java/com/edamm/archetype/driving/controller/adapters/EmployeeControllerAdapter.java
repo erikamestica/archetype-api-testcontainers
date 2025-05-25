@@ -1,10 +1,10 @@
 package com.edamm.archetype.driving.controller.adapters;
 
-import com.edamm.archetype.EmployeesApi;
-import com.edamm.archetype.api.EmployeeDto;
+import com.edamm.archetype.api.EmployeesApi;
 import com.edamm.archetype.domain.models.Employee;
 import com.edamm.archetype.domain.ports.driving.EmployeePort;
 import com.edamm.archetype.driving.controller.mappers.EmployeeDtoMapper;
+import com.edamm.archetype.model.EmployeeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

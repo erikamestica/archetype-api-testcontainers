@@ -1,7 +1,7 @@
 package com.edamm.archetype.employees;
 
-import com.edamm.archetype.api.EmployeeDto;
 import com.edamm.archetype.config.TestcontainersConfiguration;
+import com.edamm.archetype.model.EmployeeDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,12 +9,14 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
 import org.springframework.test.context.jdbc.Sql;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Testcontainers(disabledWithoutDocker = true)
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(

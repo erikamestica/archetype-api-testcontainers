@@ -1,7 +1,7 @@
 package com.edamm.archetype.driving.controller.mappers;
 
-import com.edamm.archetype.api.EmployeeDto;
 import com.edamm.archetype.domain.models.Employee;
+import com.edamm.archetype.model.EmployeeDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

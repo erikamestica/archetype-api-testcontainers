@@ -65,31 +65,40 @@
                 <version>7.3.0</version>
                 <executions>
                     <execution>
+                        <id>generate-openapi</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <inputSpec>${project.basedir}/../openapi.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <library>spring-boot</library>
-                            <apiPackage>com.edamm.archetype</apiPackage>
-                            <modelPackage>com.edamm.archetype.api</modelPackage>
+                            <output>${project.build.directory}/generated-sources/openapi</output>
+                            <apiPackage>com.edamm.archetype.api</apiPackage>
+                            <modelPackage>com.edamm.archetype.model</modelPackage>
                             <generateModelTests>false</generateModelTests>
                             <generateApiTests>false</generateApiTests>
                             <configOptions>
+                                <interfaceOnly>true</interfaceOnly>
+                                <skipDefaultInterface>true</skipDefaultInterface>
                                 <useJakartaEe>true</useJakartaEe>
+                                <java17>true</java17>
+                                <skipPom>true</skipPom>
                             </configOptions>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Añade el código generado como fuente -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
+                        <id>add-generated-sources</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>

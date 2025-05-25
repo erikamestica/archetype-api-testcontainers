@@ -6,6 +6,7 @@ developing an app with TDD, is a simple API REST with a DB connection.
 - Dockerized PostgreSQL DB in /compose.yaml
 - Default run config for IntelliJ in /.run/Run.run.xml
 - Example DB initialization with flyway
+- API First
 
 ## How to run
 - At root dir run this to start the dockerized DB:
@@ -14,7 +15,6 @@ developing an app with TDD, is a simple API REST with a DB connection.
   > mvn spring-boot:run
 
 ## Next steps
-- API First
 - Unit tests
 - Multiple adapters for different DB, APIs and Kafka
 
