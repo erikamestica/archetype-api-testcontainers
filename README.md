@@ -2,10 +2,12 @@
 This is an archetype of a simple project with TestContainers perfect to start
 developing an app with TDD, is a simple API REST with a DB connection.
 
-## Resources
-- dockerized PostgreSQL DB in /compose.yaml
+## Features
+- Dockerized PostgresSQL DB in /compose.yaml
 - Default run config for IntelliJ in /.run/Run.run.xml
 - Example DB initialization with flyway
+- API First
+- Hexagonal architecture
 
 ## How to run
 - At root dir run this to start the dockerized DB:
@@ -16,6 +18,7 @@ developing an app with TDD, is a simple API REST with a DB connection.
 **Disclamer:** You must have docker installed and mvn 
 
 ## Next steps
-- Hexagonal architecture
 - Multiple adapters for different DB, APIs and Kafka
-- API First
+
+## License
+This project is under MIT license - check the [LICENSE](./LICENSE) file for more information.
