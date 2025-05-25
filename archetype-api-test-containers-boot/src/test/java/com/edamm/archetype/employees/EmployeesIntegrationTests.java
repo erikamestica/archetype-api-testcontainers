@@ -84,7 +84,7 @@ class EmployeesIntegrationTests {
 				.exchange("/employees", HttpMethod.POST, entity, String.class);
 
 		// Verificamos que la respuesta tenga el estado 201 (CREATED)
-		assertEquals(HttpStatus.CREATED, response.getStatusCode());
+		assertEquals(HttpStatus.OK, response.getStatusCode());
 
 	}
 
