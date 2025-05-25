@@ -15,7 +15,6 @@ developing an app with TDD, is a simple API REST with a DB connection.
   > mvn spring-boot:run
 
 ## Next steps
-- Unit tests
 - Multiple adapters for different DB, APIs and Kafka
 
 ## License
