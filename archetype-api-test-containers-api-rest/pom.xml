@@ -83,7 +83,6 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                                 <useJakartaEe>true</useJakartaEe>
-                                <java17>true</java17>
                                 <skipPom>true</skipPom>
                             </configOptions>
                         </configuration>
