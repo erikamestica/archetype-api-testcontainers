@@ -3,7 +3,7 @@ This is an archetype of a simple project with TestContainers perfect to start
 developing an app with TDD, is a simple API REST with a DB connection.
 
 ## Resources
-- Dockerized PostgreSQL DB in /compose.yaml
+- Dockerized PostgresSQL DB in /compose.yaml
 - Default run config for IntelliJ in /.run/Run.run.xml
 - Example DB initialization with flyway
 - API First
