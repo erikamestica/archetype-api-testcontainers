@@ -1,7 +1,7 @@
-package com.edamm.archetype.driving.db.mappers;
+package com.edamm.archetype.driven.db.mappers;
 
 import com.edamm.archetype.domain.models.Employee;
-import com.edamm.archetype.driving.db.models.EmployeeMO;
+import com.edamm.archetype.driven.db.models.EmployeeMO;
 import org.mapstruct.Mapper;
 
 

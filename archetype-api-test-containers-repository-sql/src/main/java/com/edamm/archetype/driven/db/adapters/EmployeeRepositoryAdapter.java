@@ -1,9 +1,9 @@
-package com.edamm.archetype.driving.db.adapters;
+package com.edamm.archetype.driven.db.adapters;
 
 import com.edamm.archetype.domain.models.Employee;
 import com.edamm.archetype.domain.ports.driven.EmployeeRepositoryPort;
-import com.edamm.archetype.driving.db.mappers.EmployeeDbMapper;
-import com.edamm.archetype.driving.db.repositories.EmployeeRepository;
+import com.edamm.archetype.driven.db.mappers.EmployeeDbMapper;
+import com.edamm.archetype.driven.db.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
