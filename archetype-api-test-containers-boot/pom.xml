@@ -13,12 +13,12 @@
         <dependency>
             <groupId>com.edamm</groupId>
             <artifactId>archetype-api-test-containers-api-rest</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.edamm</groupId>
             <artifactId>archetype-api-test-containers-repository-sql</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
