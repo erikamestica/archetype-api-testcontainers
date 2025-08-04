@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Employee API
-  version: 0.0.1
+  version: 0.0.2
   description: API for managing employees
 
 paths:
@@ -9,6 +9,31 @@ paths:
     get:
       summary: Get all employees
       operationId: getAllEmployees
+      parameters:
+        - name: fields
+          in: query
+          description: Field names to get
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              uniqueItems: true
+              example: "name"
+            default: []
+        - name: orderBy
+          in: query
+          description: Order by params - for desc; + for asc
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              uniqueItems: true
+              example: "+name"
+            default: [ ]
       responses:
         '200':
           description: List of employees

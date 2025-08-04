@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeControllerAdapterTest {
+class EmployeeControllerAdapterTest {
 
     private static final Integer EMPLOYEE_ID = 1;
 
@@ -36,8 +36,8 @@ public class EmployeeControllerAdapterTest {
 
     @Test
     void getAllEmployeesShouldNotReturnEmployees() {
-        when(employeePort.findAll()).thenReturn(List.of());
-        var result = employeeControllerAdapter.getAllEmployees();
+        when(employeePort.findAll(anySet(),anySet())).thenReturn(List.of());
+        var result = employeeControllerAdapter.getAllEmployees(List.of("id"), List.of("+id"));
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertTrue(result.getBody().isEmpty());
@@ -45,11 +45,11 @@ public class EmployeeControllerAdapterTest {
 
     @Test
     void getAllEmployeesShouldReturnEmployees() {
-        when(employeePort.findAll()).thenReturn(List.of(
+        when(employeePort.findAll(anySet(),anySet())).thenReturn(List.of(
                 Employee.builder().build(),
                 Employee.builder().build()
         ));
-        var result = employeeControllerAdapter.getAllEmployees();
+        var result = employeeControllerAdapter.getAllEmployees(List.of("id"), List.of("+id"));
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertNotNull(result.getBody());
         assertFalse(result.getBody().isEmpty());

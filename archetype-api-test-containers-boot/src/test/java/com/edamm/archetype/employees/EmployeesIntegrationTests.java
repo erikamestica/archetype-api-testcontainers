@@ -9,8 +9,10 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,11 +31,19 @@ class EmployeesIntegrationTests {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void testFindAllEmployees(){
+	void testFindAllEmployees(){
+		List<String> requestedFields = List.of("name", "email");
+
+		URI uri = UriComponentsBuilder
+				.fromUriString("/employees")
+				.queryParam("fields", requestedFields.toArray())
+				.build()
+				.encode()
+				.toUri();
 
 		// Llamar al endpoint GET /employees
 		ResponseEntity<EmployeeDto[]> response = restTemplate
-				.getForEntity("/employees", EmployeeDto[].class);
+				.getForEntity(uri, EmployeeDto[].class);
 
 		assertTrue(response.getStatusCode().is2xxSuccessful());
 		assertNotNull(response);
@@ -48,7 +58,7 @@ class EmployeesIntegrationTests {
 	}
 
 	@Test
-	public void testFindOneEmployee(){
+	void testFindOneEmployee(){
 
 		// Llamar al endpoint GET /employees
 		ResponseEntity<EmployeeDto> response = restTemplate
@@ -63,7 +73,7 @@ class EmployeesIntegrationTests {
 	}
 
 	@Test
-	public void testCreateEmployee() {
+	void testCreateEmployee() {
 
 		// Datos del empleado que vamos a crear
 		String requestJson = """

@@ -3,12 +3,14 @@ package com.edamm.archetype.driven.db.adapters;
 import com.edamm.archetype.domain.models.Employee;
 import com.edamm.archetype.domain.ports.driven.EmployeeRepositoryPort;
 import com.edamm.archetype.driven.db.mappers.EmployeeDbMapper;
+import com.edamm.archetype.driven.db.models.EmployeeMO;
 import com.edamm.archetype.driven.db.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -18,8 +20,8 @@ public class EmployeeRepositoryAdapter implements EmployeeRepositoryPort {
     private final EmployeeDbMapper mapper;
 
     @Override
-    public List<Employee> findAll() {
-        return repository.findAll().stream()
+    public List<Employee> findAll(Set<String> fields, Set<String> orderByFields) {
+        return repository.findAllWithFields(EmployeeMO.class, fields, orderByFields).stream()
                 .map(mapper::dbToDomain)
                 .toList();
     }

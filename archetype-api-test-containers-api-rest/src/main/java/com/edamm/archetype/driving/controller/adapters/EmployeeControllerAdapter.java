@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,10 +22,10 @@ public class EmployeeControllerAdapter implements EmployeesApi {
     private final EmployeeDtoMapper mapper;
 
     @Override
-    public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
-        List<EmployeeDto> employees = employeePort.findAll().stream()
-                .map(mapper::domainToDto)
-                .toList();
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(List<String> fields, List<String> orderBy) {
+        List<EmployeeDto> employees = employeePort.findAll(new HashSet<>(fields), new HashSet<>(orderBy)).stream()
+            .map(mapper::domainToDto)
+            .toList();
         return ResponseEntity.ok(employees);
     }
 
