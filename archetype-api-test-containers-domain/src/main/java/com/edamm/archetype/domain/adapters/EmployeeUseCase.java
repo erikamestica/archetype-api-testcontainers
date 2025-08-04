@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +17,8 @@ public class EmployeeUseCase implements EmployeePort {
     private final EmployeeRepositoryPort employeeRepositoryPort;
 
     @Override
-    public List<Employee> findAll() {
-        return employeeRepositoryPort.findAll();
+    public List<Employee> findAll(Set<String> fields, Set<String> orderByFields) {
+        return employeeRepositoryPort.findAll(fields, orderByFields);
     }
 
     @Override

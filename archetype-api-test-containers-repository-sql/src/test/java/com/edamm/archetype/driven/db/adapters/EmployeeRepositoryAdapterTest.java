@@ -12,14 +12,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeRepositoryAdapterTest {
+class EmployeeRepositoryAdapterTest {
 
     private static final Integer EMPLOYEE_ID = 1;
 
@@ -35,19 +37,18 @@ public class EmployeeRepositoryAdapterTest {
 
     @Test
     void getAllEmployeesShouldNotReturnEmployees() {
-        when(employeeRepository.findAll()).thenReturn(List.of());
-        var result = employeeRepositoryPort.findAll();
+        when(employeeRepository.findAllWithFields(eq(EmployeeMO.class), anySet(), anySet())).thenReturn(List.of());
+        var result = employeeRepositoryPort.findAll(Set.of("id"), Set.of("id"));
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
 
     @Test
     void getAllEmployeesShouldReturnEmployees() {
-        when(employeeRepository.findAll()).thenReturn(List.of(
-                EmployeeMO.builder().build(),
-                EmployeeMO.builder().build()
+        when(employeeRepository.findAllWithFields(eq(EmployeeMO.class), anySet(), anySet())).thenReturn(List.of(
+            Map.of(), Map.of()
         ));
-        var result = employeeRepositoryPort.findAll();
+        var result = employeeRepositoryPort.findAll(Set.of("id"), Set.of("+id"));
         assertNotNull(result);
         assertFalse(result.isEmpty());
     }

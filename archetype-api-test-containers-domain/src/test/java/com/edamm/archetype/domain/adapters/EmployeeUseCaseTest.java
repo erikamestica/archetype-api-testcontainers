@@ -11,13 +11,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeUseCaseTest {
+class EmployeeUseCaseTest {
 
     private static final Integer EMPLOYEE_ID = 1;
 
@@ -33,19 +34,19 @@ public class EmployeeUseCaseTest {
 
     @Test
     void getAllEmployeesShouldNotReturnEmployees() {
-        when(employeeRepositoryPort.findAll()).thenReturn(List.of());
-        var result = employeePort.findAll();
+        when(employeeRepositoryPort.findAll(Set.of("id"), Set.of("id"))).thenReturn(List.of());
+        var result = employeePort.findAll(Set.of("id"), Set.of("id"));
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
 
     @Test
     void getAllEmployeesShouldReturnEmployees() {
-        when(employeeRepositoryPort.findAll()).thenReturn(List.of(
+        when(employeeRepositoryPort.findAll(Set.of("id"), Set.of("-id"))).thenReturn(List.of(
                 Employee.builder().build(),
                 Employee.builder().build()
         ));
-        var result = employeePort.findAll();
+        var result = employeePort.findAll(Set.of("id"), Set.of("-id"));
         assertNotNull(result);
         assertFalse(result.isEmpty());
     }
