@@ -96,6 +96,8 @@ class EmployeesIntegrationTests {
 		// Verificamos que la respuesta tenga el estado 201 (CREATED)
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 
+		// TODO ir a BDD a revisar que se haya guardado
+
 	}
 
 	@Test
